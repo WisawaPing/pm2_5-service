@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../src/models/associations/user.association.js"],"names":["db"],"mappings":";;;;;;kBAAe,UAACA,EAAD,EAAQ,CAAE,C","file":"user.association.js","sourcesContent":["export default (db) => {};\n"]}

@@ -1,0 +1,55 @@
+{
+  "courseId": 210,
+  "courseStructure": [
+    {
+      "id": 24,
+      "name": "1",
+      "plan_1": null,
+      "plan_2": null,
+      "plan_3": null,
+      "sub1": "1",
+      "sub2": "1",
+      "sub3": "1",
+      "sub4": "1",
+      "sub5": "1",
+      "sub6": "1",
+      "sub7": null,
+      "createdAt": "2022-10-04T23:40:52.000Z",
+      "updatedAt": "2022-10-05T03:22:11.000Z",
+      "levelId": null,
+      "facualtyId": null,
+      "majorId": null,
+      "courseId": 210
+    },
+    {
+      "id": 25,
+      "name": "2",
+      "plan_1": null,
+      "plan_2": null,
+      "plan_3": null,
+      "sub1": "2",
+      "sub2": "2",
+      "sub3": "2",
+      "sub4": "2",
+      "sub5": "2",
+      "sub6": "2",
+      "sub7": null,
+      "createdAt": "2022-10-04T23:40:52.000Z",
+      "updatedAt": "2022-10-05T03:22:11.000Z",
+      "levelId": null,
+      "facualtyId": null,
+      "majorId": null,
+      "courseId": 210
+    },
+    {
+      "name": "new4",
+      "sub1": "new4",
+      "sub2": "new4",
+      "sub3": "new4",
+      "sub4": "new4",
+      "sub5": "new4",
+      "sub6": "new4",
+      "sub7": null
+    }
+  ]
+}

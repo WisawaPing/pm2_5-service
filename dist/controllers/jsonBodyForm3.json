@@ -1,0 +1,41 @@
+{
+  "majors": [
+    {
+      "name_th": "name_th",
+      "name_en": "name_en",
+      "desc_th": "desc_th",
+      "desc_en": "desc_en",
+      "subject": [
+        {
+          "name": "name"
+        },
+        {
+          "name": "name"
+        },
+        {
+          "name": "name"
+        }
+      ],
+      "job_opportunities": "job_opportunities"
+    }
+  ],
+  "typeCourse": [
+    {
+      "name_th": "name_th typeCourse",
+      "name_en": "name_en",
+      "desc_th": "desc_th",
+      "desc_en": "desc_en",
+      "subject": [
+        {
+          "name": "name typeCourse "
+        },
+        {
+          "name": "name 1 typeCourse "
+        },
+        {
+          "name": "name 2 typeCourse"
+        }
+      ]
+    }
+  ]
+}

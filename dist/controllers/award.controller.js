@@ -1,0 +1,764 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _defineProperty2 = require("babel-runtime/helpers/defineProperty");
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _keys = require("babel-runtime/core-js/object/keys");
+
+var _keys2 = _interopRequireDefault(_keys);
+
+var _regenerator = require("babel-runtime/regenerator");
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _getIterator2 = require("babel-runtime/core-js/get-iterator");
+
+var _getIterator3 = _interopRequireDefault(_getIterator2);
+
+var _asyncToGenerator2 = require("babel-runtime/helpers/asyncToGenerator");
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+var _models = require("../models");
+
+var _models2 = _interopRequireDefault(_models);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _require = require("sequelize"),
+    Op = _require.Op;
+
+var Award = _models2.default.Award;
+
+var FileAward = _models2.default.fileAward;
+
+var include = [];
+
+var create = function () {
+  var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(req, res) {
+    var data, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, item;
+
+    return _regenerator2.default.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+
+            if (req.body) {
+              _context.next = 4;
+              break;
+            }
+
+            res.status(200).send({
+              response_status: "ERROR",
+              message: "Content can not be empty!"
+            });
+            return _context.abrupt("return");
+
+          case 4:
+            _context.next = 6;
+            return Award.create(req.body);
+
+          case 6:
+            data = _context.sent;
+
+            if (data) {
+              _context.next = 10;
+              break;
+            }
+
+            res.send({
+              response_status: "ERROR",
+              message: err.message || "Some error occurred while creating."
+            });
+            return _context.abrupt("return");
+
+          case 10:
+            if (!data) {
+              _context.next = 39;
+              break;
+            }
+
+            _iteratorNormalCompletion = true;
+            _didIteratorError = false;
+            _iteratorError = undefined;
+            _context.prev = 14;
+            _iterator = (0, _getIterator3.default)(req.body.pathPic);
+
+          case 16:
+            if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
+              _context.next = 24;
+              break;
+            }
+
+            item = _step.value;
+
+            item.awardId = data.dataValues.id;
+            _context.next = 21;
+            return FileAward.create(item);
+
+          case 21:
+            _iteratorNormalCompletion = true;
+            _context.next = 16;
+            break;
+
+          case 24:
+            _context.next = 30;
+            break;
+
+          case 26:
+            _context.prev = 26;
+            _context.t0 = _context["catch"](14);
+            _didIteratorError = true;
+            _iteratorError = _context.t0;
+
+          case 30:
+            _context.prev = 30;
+            _context.prev = 31;
+
+            if (!_iteratorNormalCompletion && _iterator.return) {
+              _iterator.return();
+            }
+
+          case 33:
+            _context.prev = 33;
+
+            if (!_didIteratorError) {
+              _context.next = 36;
+              break;
+            }
+
+            throw _iteratorError;
+
+          case 36:
+            return _context.finish(33);
+
+          case 37:
+            return _context.finish(30);
+
+          case 38:
+            res.status(201).send({ response_status: "SUCCESS", data: data });
+
+          case 39:
+            _context.next = 44;
+            break;
+
+          case 41:
+            _context.prev = 41;
+            _context.t1 = _context["catch"](0);
+
+            res.send({
+              response_status: "ERROR",
+              message: _context.t1.message || "Some error occurred while creating."
+            });
+
+          case 44:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, undefined, [[0, 41], [14, 26, 30, 38], [31,, 33, 37]]);
+  }));
+
+  return function create(_x, _x2) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+var updateIndex = function () {
+  var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(req, res) {
+    var items, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, item, id, index, result;
+
+    return _regenerator2.default.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            items = req.body;
+            _iteratorNormalCompletion2 = true;
+            _didIteratorError2 = false;
+            _iteratorError2 = undefined;
+            _context2.prev = 5;
+            _iterator2 = (0, _getIterator3.default)(items);
+
+          case 7:
+            if (_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done) {
+              _context2.next = 20;
+              break;
+            }
+
+            item = _step2.value;
+            id = item.id, index = item.index;
+            _context2.next = 12;
+            return Award.update({ index: index }, {
+              where: { id: id }
+            });
+
+          case 12:
+            result = _context2.sent;
+
+
+            console.log("result", result);
+
+            if (!(result[0] !== 1)) {
+              _context2.next = 17;
+              break;
+            }
+
+            res.status(200).send({
+              response_status: "ERROR",
+              message: "(ID: " + id + ") was not found."
+            });
+            return _context2.abrupt("return");
+
+          case 17:
+            _iteratorNormalCompletion2 = true;
+            _context2.next = 7;
+            break;
+
+          case 20:
+            _context2.next = 26;
+            break;
+
+          case 22:
+            _context2.prev = 22;
+            _context2.t0 = _context2["catch"](5);
+            _didIteratorError2 = true;
+            _iteratorError2 = _context2.t0;
+
+          case 26:
+            _context2.prev = 26;
+            _context2.prev = 27;
+
+            if (!_iteratorNormalCompletion2 && _iterator2.return) {
+              _iterator2.return();
+            }
+
+          case 29:
+            _context2.prev = 29;
+
+            if (!_didIteratorError2) {
+              _context2.next = 32;
+              break;
+            }
+
+            throw _iteratorError2;
+
+          case 32:
+            return _context2.finish(29);
+
+          case 33:
+            return _context2.finish(26);
+
+          case 34:
+
+            res.send({
+              response_status: "SUCCESS",
+              message: "Updated successfully"
+            });
+            _context2.next = 40;
+            break;
+
+          case 37:
+            _context2.prev = 37;
+            _context2.t1 = _context2["catch"](0);
+
+            res.send({
+              response_status: "ERROR",
+              message: _context2.t1.message || "Some error occurred while updating."
+            });
+
+          case 40:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, undefined, [[0, 37], [5, 22, 26, 34], [27,, 29, 33]]);
+  }));
+
+  return function updateIndex(_x3, _x4) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+var findAll = function () {
+  var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(req, res) {
+    var query, awards, where, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, item, result, _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, _item, _result;
+
+    return _regenerator2.default.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            query = req.query;
+            awards = [];
+
+            if (!((0, _keys2.default)(req.query).length > 0)) {
+              _context3.next = 41;
+              break;
+            }
+
+            where = {};
+
+            (0, _keys2.default)(req.query).forEach(function (key) {
+              if (key === "lang") {
+                lang = req.query[key];
+                return;
+              }
+              where[key] = req.query[key];
+            });
+
+            if (query.searchGlobal) {
+              where = {};
+              where[Op.or] = [{
+                name_th: (0, _defineProperty3.default)({}, Op.like, "%" + query.searchGlobal + "%")
+              }, {
+                name_en: (0, _defineProperty3.default)({}, Op.like, "%" + query.searchGlobal + "%")
+              }];
+            }
+
+            _context3.next = 9;
+            return Award.findAll({
+              order: [["index", "ASC"], ["createdAt", "DESC"]],
+              where: where
+            });
+
+          case 9:
+            awards = _context3.sent;
+
+            if (!awards) {
+              _context3.next = 39;
+              break;
+            }
+
+            _iteratorNormalCompletion3 = true;
+            _didIteratorError3 = false;
+            _iteratorError3 = undefined;
+            _context3.prev = 14;
+            _iterator3 = (0, _getIterator3.default)(awards);
+
+          case 16:
+            if (_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done) {
+              _context3.next = 25;
+              break;
+            }
+
+            item = _step3.value;
+            _context3.next = 20;
+            return FileAward.findAll({
+              where: {
+                awardId: item.id
+              }
+            });
+
+          case 20:
+            result = _context3.sent;
+
+            item.dataValues.pathPic = result;
+
+          case 22:
+            _iteratorNormalCompletion3 = true;
+            _context3.next = 16;
+            break;
+
+          case 25:
+            _context3.next = 31;
+            break;
+
+          case 27:
+            _context3.prev = 27;
+            _context3.t0 = _context3["catch"](14);
+            _didIteratorError3 = true;
+            _iteratorError3 = _context3.t0;
+
+          case 31:
+            _context3.prev = 31;
+            _context3.prev = 32;
+
+            if (!_iteratorNormalCompletion3 && _iterator3.return) {
+              _iterator3.return();
+            }
+
+          case 34:
+            _context3.prev = 34;
+
+            if (!_didIteratorError3) {
+              _context3.next = 37;
+              break;
+            }
+
+            throw _iteratorError3;
+
+          case 37:
+            return _context3.finish(34);
+
+          case 38:
+            return _context3.finish(31);
+
+          case 39:
+            _context3.next = 73;
+            break;
+
+          case 41:
+            _context3.next = 43;
+            return Award.findAll({
+              order: [["index", "ASC"], ["createdAt", "DESC"]]
+            });
+
+          case 43:
+            awards = _context3.sent;
+
+            if (!awards) {
+              _context3.next = 73;
+              break;
+            }
+
+            _iteratorNormalCompletion4 = true;
+            _didIteratorError4 = false;
+            _iteratorError4 = undefined;
+            _context3.prev = 48;
+            _iterator4 = (0, _getIterator3.default)(awards);
+
+          case 50:
+            if (_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done) {
+              _context3.next = 59;
+              break;
+            }
+
+            _item = _step4.value;
+            _context3.next = 54;
+            return FileAward.findAll({
+              where: {
+                awardId: _item.id
+              }
+            });
+
+          case 54:
+            _result = _context3.sent;
+
+            _item.dataValues.pathPic = _result;
+
+          case 56:
+            _iteratorNormalCompletion4 = true;
+            _context3.next = 50;
+            break;
+
+          case 59:
+            _context3.next = 65;
+            break;
+
+          case 61:
+            _context3.prev = 61;
+            _context3.t1 = _context3["catch"](48);
+            _didIteratorError4 = true;
+            _iteratorError4 = _context3.t1;
+
+          case 65:
+            _context3.prev = 65;
+            _context3.prev = 66;
+
+            if (!_iteratorNormalCompletion4 && _iterator4.return) {
+              _iterator4.return();
+            }
+
+          case 68:
+            _context3.prev = 68;
+
+            if (!_didIteratorError4) {
+              _context3.next = 71;
+              break;
+            }
+
+            throw _iteratorError4;
+
+          case 71:
+            return _context3.finish(68);
+
+          case 72:
+            return _context3.finish(65);
+
+          case 73:
+            res.send({ response_status: "SUCCESS", data: awards });
+            _context3.next = 79;
+            break;
+
+          case 76:
+            _context3.prev = 76;
+            _context3.t2 = _context3["catch"](0);
+
+            res.send({
+              response_status: "ERROR",
+              message: _context3.t2.message || "Some error occurred while retrieving the awards."
+            });
+
+          case 79:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3, undefined, [[0, 76], [14, 27, 31, 39], [32,, 34, 38], [48, 61, 65, 73], [66,, 68, 72]]);
+  }));
+
+  return function findAll(_x5, _x6) {
+    return _ref3.apply(this, arguments);
+  };
+}();
+
+var findOne = function () {
+  var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4(req, res) {
+    var id, award, result;
+    return _regenerator2.default.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            id = req.params.id;
+            _context4.next = 4;
+            return Award.findOne({
+              where: {
+                id: id
+              }
+            });
+
+          case 4:
+            award = _context4.sent;
+
+            if (!award) {
+              _context4.next = 10;
+              break;
+            }
+
+            _context4.next = 8;
+            return FileAward.findAll({
+              where: {
+                awardId: id
+              }
+            });
+
+          case 8:
+            result = _context4.sent;
+
+            award.dataValues.pathPic = result;
+
+          case 10:
+            res.send({ response_status: "SUCCESS", data: award.dataValues });
+            _context4.next = 16;
+            break;
+
+          case 13:
+            _context4.prev = 13;
+            _context4.t0 = _context4["catch"](0);
+
+            res.send({
+              response_status: "ERROR",
+              message: _context4.t0.message || "Some error occurred while retrieving the award."
+            });
+
+          case 16:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, undefined, [[0, 13]]);
+  }));
+
+  return function findOne(_x7, _x8) {
+    return _ref4.apply(this, arguments);
+  };
+}();
+
+var update = function () {
+  var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5(req, res) {
+    var id, result, _iteratorNormalCompletion5, _didIteratorError5, _iteratorError5, _iterator5, _step5, item;
+
+    return _regenerator2.default.wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            _context5.prev = 0;
+            id = req.params.id;
+            _context5.next = 4;
+            return Award.update(req.body, {
+              where: {
+                id: id
+              }
+            });
+
+          case 4:
+            result = _context5.sent;
+            _context5.next = 7;
+            return FileAward.destroy({
+              where: {
+                awardId: id
+              }
+            });
+
+          case 7:
+            _iteratorNormalCompletion5 = true;
+            _didIteratorError5 = false;
+            _iteratorError5 = undefined;
+            _context5.prev = 10;
+            _iterator5 = (0, _getIterator3.default)(req.body.pathPic);
+
+          case 12:
+            if (_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done) {
+              _context5.next = 20;
+              break;
+            }
+
+            item = _step5.value;
+
+            item.awardId = id;
+            _context5.next = 17;
+            return FileAward.create(item);
+
+          case 17:
+            _iteratorNormalCompletion5 = true;
+            _context5.next = 12;
+            break;
+
+          case 20:
+            _context5.next = 26;
+            break;
+
+          case 22:
+            _context5.prev = 22;
+            _context5.t0 = _context5["catch"](10);
+            _didIteratorError5 = true;
+            _iteratorError5 = _context5.t0;
+
+          case 26:
+            _context5.prev = 26;
+            _context5.prev = 27;
+
+            if (!_iteratorNormalCompletion5 && _iterator5.return) {
+              _iterator5.return();
+            }
+
+          case 29:
+            _context5.prev = 29;
+
+            if (!_didIteratorError5) {
+              _context5.next = 32;
+              break;
+            }
+
+            throw _iteratorError5;
+
+          case 32:
+            return _context5.finish(29);
+
+          case 33:
+            return _context5.finish(26);
+
+          case 34:
+            if (!(result != 1)) {
+              _context5.next = 37;
+              break;
+            }
+
+            res.status(200).send({
+              response_status: "ERROR",
+              message: "(ID: " + id + ") was not found."
+            });
+            return _context5.abrupt("return");
+
+          case 37:
+            res.send({ response_status: "SUCCESS", message: "Updated successfully" });
+            _context5.next = 43;
+            break;
+
+          case 40:
+            _context5.prev = 40;
+            _context5.t1 = _context5["catch"](0);
+
+            res.send({
+              response_status: "ERROR",
+              message: _context5.t1.message || "Some error occurred while updating."
+            });
+
+          case 43:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5, undefined, [[0, 40], [10, 22, 26, 34], [27,, 29, 33]]);
+  }));
+
+  return function update(_x9, _x10) {
+    return _ref5.apply(this, arguments);
+  };
+}();
+
+var remove = function () {
+  var _ref6 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee6(req, res) {
+    var id, result;
+    return _regenerator2.default.wrap(function _callee6$(_context6) {
+      while (1) {
+        switch (_context6.prev = _context6.next) {
+          case 0:
+            _context6.prev = 0;
+            id = req.params.id;
+            _context6.next = 4;
+            return Award.destroy({
+              where: {
+                id: id
+              }
+            });
+
+          case 4:
+            result = _context6.sent;
+
+            if (!(result !== 1)) {
+              _context6.next = 8;
+              break;
+            }
+
+            res.status(200).send({
+              response_status: "ERROR",
+              message: "Log (ID: " + id + ") was not found."
+            });
+            return _context6.abrupt("return");
+
+          case 8:
+
+            res.send({ response_status: "SUCCESS", message: "Deleted successfully" });
+            _context6.next = 14;
+            break;
+
+          case 11:
+            _context6.prev = 11;
+            _context6.t0 = _context6["catch"](0);
+
+            res.send({
+              response_status: "ERROR",
+              message: _context6.t0.message || "Some error occurred while deleting."
+            });
+
+          case 14:
+          case "end":
+            return _context6.stop();
+        }
+      }
+    }, _callee6, undefined, [[0, 11]]);
+  }));
+
+  return function remove(_x11, _x12) {
+    return _ref6.apply(this, arguments);
+  };
+}();
+
+exports.default = {
+  create: create,
+  findAll: findAll,
+  updateIndex: updateIndex,
+  findOne: findOne,
+  update: update,
+  remove: remove
+};
+//# sourceMappingURL=award.controller.js.map

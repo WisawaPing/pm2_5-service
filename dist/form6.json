@@ -1,0 +1,48 @@
+{
+  "courseId": 210,
+  "id": 210,
+  "img_url": "https://adoring-pasteur.115-178-63-39.plesk.page/upload-file/mBCll-undefined-wordmark-color.png",
+  "showImage": "https://adoring-pasteur.115-178-63-39.plesk.page/upload-file/mBCll-undefined-wordmark-color.png",
+  "job_opportunities_th": "<p>test\tsasd</p><p><br></p><p><br></p><p><br></p>",
+  "job_opportunities_en": "<p>test asdasd</p><p><br></p><p><br></p><p><br></p>",
+  "semesters": [
+    {
+      "id": 41,
+      "semester_name": "3",
+      "semester_month": "3",
+      "createdAt": "2022-10-04T23:42:11.000Z",
+      "updatedAt": "2022-10-04T23:45:11.000Z",
+      "courseId": 210
+    },
+    {
+      "id": 42,
+      "semester_name": "4",
+      "semester_month": "4",
+      "createdAt": "2022-10-04T23:42:11.000Z",
+      "updatedAt": "2022-10-04T23:45:11.000Z",
+      "courseId": 210
+    },
+    { "semester_name": "new3", "semester_month": "new3" },
+    { "semester_name": "new4", "semester_month": "new4" }
+  ],
+  "study_day_times": [
+    {
+      "id": 39,
+      "day": "1",
+      "time": "1",
+      "createdAt": "2022-10-04T23:42:11.000Z",
+      "updatedAt": "2022-10-04T23:42:11.000Z",
+      "courseId": 210
+    },
+    {
+      "id": 40,
+      "day": "2",
+      "time": "2",
+      "createdAt": "2022-10-04T23:42:11.000Z",
+      "updatedAt": "2022-10-04T23:42:11.000Z",
+      "courseId": 210
+    },
+    { "day": "new1", "time": "new1" },
+    { "day": "new2", "time": "new2" }
+  ]
+}
