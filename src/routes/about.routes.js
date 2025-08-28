@@ -4,7 +4,7 @@ import controller from "../controllers/about.controller.js";
 
 const router = Router();
 
-router.get("/", auth, controller.getAbout);
-router.put("/", auth, controller.updateAbout);
+router.get("/", controller.getAbout);
+router.put("/", controller.updateAbout);
 
 export default router;

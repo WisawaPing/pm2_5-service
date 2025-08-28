@@ -8,8 +8,9 @@ import innovationBannerModel from "./innovationBanner.model.js";
 import innovationTypeModel from "./innovationType.model.js";
 import communityOverviewModel from "./communityOverview.model.js";
 import communityTypeModel from "./communityType.model.js";
-
+import lifeLongLearningBannerModel from "./lifeLongLearningBanner.model.js";
 import courseModel from "./course.model.js";
+import academicNetworkModel from "./academicNetwork.model.js";
 import contactModel from "./contact.model.js";
 
 // สร้าง Sequelize instance
@@ -38,8 +39,9 @@ db.InnovationBanner = innovationBannerModel(sequelize, Sequelize);
 db.InnovationType = innovationTypeModel(sequelize, Sequelize);
 db.CommunityOverview = communityOverviewModel(sequelize, Sequelize);
 db.CommunityType = communityTypeModel(sequelize, Sequelize);
-
+db.LifeLongLearningBanner = lifeLongLearningBannerModel(sequelize, Sequelize);
 db.Course = courseModel(sequelize, Sequelize);
+db.AcademicNetwork = academicNetworkModel(sequelize, Sequelize);
 db.Contact = contactModel(sequelize, Sequelize);
 
 export default db;

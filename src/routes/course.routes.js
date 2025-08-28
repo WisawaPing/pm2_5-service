@@ -1,4 +1,5 @@
 import { Router } from "express";
+import auth from "../middleware/auth.js";
 import controller from "../controllers/course.controller.js";
 
 const router = Router();
