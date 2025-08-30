@@ -4,7 +4,7 @@ import communityController from "../controllers/communityOverview.controller.js"
 
 const router = express.Router();
 
-router.get("/", communityController.getCommunityOverview);
-router.put("/", communityController.updateCommunityOverview);
+router.get("/", auth, communityController.getCommunityOverview);
+router.put("/", auth, communityController.updateCommunityOverview);
 
 export default router;
