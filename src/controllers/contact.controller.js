@@ -15,6 +15,12 @@ const getContact = async (req, res) => {
           address: "",
           phone: "",
           email: "",
+          facebook: "",
+          twitter: "",
+          line: "",
+          tiktok: "",
+          instagram: "",
+          website: "",
         },
       });
     }
@@ -34,7 +40,19 @@ const getContact = async (req, res) => {
 
 const updateContact = async (req, res) => {
   try {
-    const { projectName, department, address, phone, email } = req.body;
+    const {
+      projectName,
+      department,
+      address,
+      phone,
+      email,
+      facebook,
+      twitter,
+      line,
+      tiktok,
+      instagram,
+      website,
+    } = req.body;
 
     let contact = await Contact.findByPk(1);
 
@@ -45,9 +63,27 @@ const updateContact = async (req, res) => {
         address,
         phone,
         email,
+        facebook,
+        twitter,
+        line,
+        tiktok,
+        instagram,
+        website,
       });
     } else {
-      await contact.update({ projectName, department, address, phone, email });
+      await contact.update({
+        projectName,
+        department,
+        address,
+        phone,
+        email,
+        facebook,
+        twitter,
+        line,
+        tiktok,
+        instagram,
+        website,
+      });
     }
 
     res.send({

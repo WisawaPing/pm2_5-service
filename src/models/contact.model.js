@@ -30,6 +30,36 @@ export default (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: "",
     },
+    facebook: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: "",
+    },
+    twitter: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: "",
+    },
+    line: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: "",
+    },
+    tiktok: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: "",
+    },
+    instagram: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: "",
+    },
+    website: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: "",
+    },
   });
 
   return Contact;
