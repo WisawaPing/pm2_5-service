@@ -12,16 +12,18 @@ exports.getBanner = async (req, res) => {
 
 exports.saveBanner = async (req, res) => {
   try {
-    const { bannerText, bannerImage } = req.body;
+    const { bannerTitle, bannerText, bannerImage } = req.body;
 
     let banner = await LifeLongLearningBanner.findOne();
 
     if (banner) {
+      banner.bannerTitle = bannerTitle;
       banner.bannerText = bannerText;
       banner.bannerImage = bannerImage;
       await banner.save();
     } else {
       banner = await LifeLongLearningBanner.create({
+        bannerTitle,
         bannerText,
         bannerImage,
       });
