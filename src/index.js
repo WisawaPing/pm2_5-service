@@ -42,6 +42,20 @@ app.get("/", (req, res) => {
   res.json({ response_status: "SUCCESS", message: "Service API!" });
 });
 
+function sanitizeFileName(filename) {
+  // แยกชื่อ + นามสกุลไฟล์
+  const ext = path.extname(filename); // เช่น .pdf
+  const base = path.basename(filename, ext);
+
+  // ล้างอักขระแปลกๆ ที่ใช้ไม่ได้บน filesystem
+  const safeBase = base.replace(/[^a-zA-Z0-9ก-๙_\- ]/g, "");
+
+  // กันกรณีชื่อว่าง
+  const finalBase = safeBase.length > 0 ? safeBase : "file";
+
+  return finalBase + ext;
+}
+
 // Upload file API
 app.post("/api/upload/file", async (req, res) => {
   try {
@@ -53,13 +67,16 @@ app.post("/api/upload/file", async (req, res) => {
     }
 
     const file = req.files.file;
-    const fileName = `${Date.now()}_${file.name}`;
+
+    // sanitize ชื่อไฟล์ (คงภาษาไทยไว้ แต่ตัดตัวแปลกออก)
+    const safeName = sanitizeFileName(file.name);
+
+    // เติม timestamp กันชื่อซ้ำ
+    const fileName = `${Date.now()}_${safeName}`;
     const filePath = path.join(UPLOAD_DIR, fileName);
 
-    // ย้ายไฟล์ไป public/upload-files
     await file.mv(filePath);
 
-    // ส่ง URL กลับ
     const fileUrl = `${req.protocol}://${req.get("host")}/uploads/${fileName}`;
 
     res.json({
