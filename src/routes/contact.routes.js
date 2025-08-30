@@ -4,7 +4,7 @@ import contactController from "../controllers/contact.controller.js";
 
 const router = express.Router();
 
-router.get("/", auth, contactController.getContact);
+router.get("/", contactController.getContact);
 router.put("/", auth, contactController.updateContact);
 
 export default router;

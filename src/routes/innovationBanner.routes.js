@@ -4,7 +4,7 @@ import controller from "../controllers/innovationBanner.controller.js";
 
 const router = Router();
 
-router.get("/", auth, controller.getInnovationBanner);
+router.get("/", controller.getInnovationBanner);
 router.put("/", auth, controller.updateInnovationBanner);
 
 export default router;

@@ -4,7 +4,7 @@ import controller from "../controllers/academicNetwork.controller.js";
 
 const router = Router();
 
-router.get("/", auth, controller.getAcademicNetwork);
+router.get("/", controller.getAcademicNetwork);
 router.post("/", auth, controller.updateAcademicNetwork);
 
 export default router;
