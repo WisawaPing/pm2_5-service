@@ -8,7 +8,7 @@ const getInnovationBanner = async (req, res) => {
     if (!banner) {
       return res.status(200).send({
         response_status: "SUCCESS",
-        data: { bannerText: "", bannerImage: "" },
+        data: { bannerTitle: "", bannerText: "", bannerImage: "" },
       });
     }
     res.send({
@@ -25,14 +25,18 @@ const getInnovationBanner = async (req, res) => {
 
 const updateInnovationBanner = async (req, res) => {
   try {
-    const { bannerText, bannerImage } = req.body;
+    const { bannerTitle, bannerText, bannerImage } = req.body;
 
     let banner = await InnovationBanner.findByPk(1);
 
     if (!banner) {
-      banner = await InnovationBanner.create({ bannerText, bannerImage });
+      banner = await InnovationBanner.create({
+        bannerTitle,
+        bannerText,
+        bannerImage,
+      });
     } else {
-      await banner.update({ bannerText, bannerImage });
+      await banner.update({ bannerTitle, bannerText, bannerImage });
     }
 
     res.send({
